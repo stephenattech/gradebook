@@ -8,12 +8,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class ComponentTest extends Component {
-    
-    Course cs1301;
-    Class fall2012, spring2013;
-    Section a4, b2, b9, a;
-    Student stephen, thomas, philip, john;
-    
+
+    private Course cs1301;
+    private Class fall2012, spring2013;
+    private Section a4, b2, b9, a;
+    private Student stephen, thomas, philip, john;
+
     @Before
     public void setUp() throws Exception {
         setupCourse();
@@ -28,6 +28,7 @@ public class ComponentTest extends Component {
         assertEquals('A', cs1301.letterGrade());
         assertEquals('A', spring2013.letterGrade());
         assertEquals('C', a.letterGrade());
+        assertEquals('A', stephen.letterGrade());
     }
 
     @Test
@@ -36,6 +37,7 @@ public class ComponentTest extends Component {
         assertEquals(4, Math.round(fall2012.gpa()));
         assertEquals(4, Math.round(b2.gpa()));
         assertEquals(2, Math.round(a.gpa()));
+        assertEquals(4, Math.round(philip.gpa()));
     }
 
     @Test
@@ -44,6 +46,7 @@ public class ComponentTest extends Component {
         assertEquals(96, Math.round(a4.average()));
         assertEquals(92, Math.round(b9.average()));
         assertEquals(62, Math.round(a.average()));
+        assertEquals(100, Math.round(thomas.average()));
     }
 
     @Test
@@ -52,6 +55,7 @@ public class ComponentTest extends Component {
         assertEquals(3, cs1301.numberOfStudents());
         assertEquals(2, spring2013.numberOfStudents());
         assertEquals(5, a.numberOfStudents());
+        assertEquals(1, john.numberOfStudents());
     }
 
     @Test
@@ -68,7 +72,7 @@ public class ComponentTest extends Component {
         assertEquals('F', letterGradeValue(0.49));
         assertEquals('F', letterGradeValue(0.0));
     }
-    
+
     private void setupCourse() {
         cs1301 = new Course("CS", 1301, "Intro Computing", NONE);
         addChild(cs1301);
@@ -79,12 +83,14 @@ public class ComponentTest extends Component {
         addChild(spring2013);
     }
     private void setupSections() {
-        GradingScheme mockScheme =
-                GradingSchemeFactory.makeGradingScheme("MOCK", null, null);
-        a4 = fall2012.addSection("A4", mockScheme);
-        b2 = spring2013.addSection("B2", mockScheme);
-        b9 = spring2013.addSection("B9", mockScheme);
-        a = new Section("A", mockScheme, null);
+        a4 = fall2012.addSection("A4");
+        b2 = spring2013.addSection("B2");
+        b9 = spring2013.addSection("B9");
+        a = new Section("A", null);
+        a4.setGradingScheme("MOCK", null);
+        b2.setGradingScheme("MOCK", null);
+        b9.setGradingScheme("MOCK", null);
+        a.setGradingScheme("MOCK", null);
         addChild(a);
     }
     private void setupStudents() {

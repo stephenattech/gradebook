@@ -6,29 +6,28 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class GradebookCategoryTest {
-    
-    GradebookCategory hwk, lab, test;
-    GradebookItem hwk1, hwk2, hwk3, lab1, lab2, test1, test2;
-    Student alice, billy, catalina;
-    
+
+    private GradebookCategory hwk, lab, test;
+    private GradebookItem hwk1, hwk2, lab1, lab2, test1;
+    private Student alice;
+
     @Before
     public void setUp() throws Exception {
-        Section zero = new Section(null,null,null);
+        Section zero = new Section(null, null);
         hwk = new GradebookCategory("Homework", 3, "Homework");
         lab = new GradebookCategory("Lab", 3, "Lab");
         test = new GradebookCategory("Test", 4, "Test");
-        alice = new Student("Alice", "Bob", 97, zero, 0);
-        billy = new Student("Billy", "Bob", 99, zero, 1);
+        alice = zero.addStudent("Alice", "Bob", 97);
+        zero.addStudent("Billy", "Bob", 99);
         hwk1 = hwk.addItem("HWK1", 40, 2);
         hwk2 = hwk.addItem("HWK2", 30, 2);
-        hwk3 = hwk.addItem("HWK3", 10, 2);
-        catalina = new Student("Catalina", "Home", 100, zero, 2);
-        hwk.addStudent();
+        hwk.addItem("HWK3", 10, 2);
+        zero.addStudent("Catalina", "Home", 100);
         lab1 = lab.addItem("lab1", 60, 3);
         lab2 = lab.addItem("lab2", 40, 3);
         lab.setDropLowest();
         test1 = test.addItem("test1", 150, 3);
-        test2 = test.addItem("test2", 50, 3);
+        test.addItem("test2", 50, 3);
         test.setReplaceLowest(hwk);
         hwk1.setGrade(alice, 33);
         hwk2.setGrade(alice, 30);

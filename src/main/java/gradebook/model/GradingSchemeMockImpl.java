@@ -9,15 +9,10 @@ package gradebook.model;
 
 public class GradingSchemeMockImpl implements GradingScheme {
 
-    private int added;
     private static final double PERCENT_CONVERTER = 10000000.0;
     private static final int D_CUTOFF = 60;
     private static final int ASCII_CONVERTER = 74;
     private static final int SCALE_WIDTH = 10;
-
-    public GradingSchemeMockImpl() {
-        added = 0;
-    }
 
     @Override
     public double average(Student student) {
@@ -84,15 +79,6 @@ public class GradingSchemeMockImpl implements GradingScheme {
     public void setCutoffs(int aCutoff, int bCutoff,
             int cCutoff, int dCutoff) {
 
-    }
-
-    @Override
-    public void addStudent() {
-        added += 1;
-    }
-
-    public int getAdded() {
-        return added;
     }
 
     @Override

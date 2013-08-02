@@ -16,10 +16,8 @@ public class Section extends Component {
     private GradingScheme gradingScheme;
     private int nextIndex;
 
-    public Section(String sectionCode, GradingScheme gradingScheme,
-            String classFullQual) {
+    public Section(String sectionCode, String classFullQual) {
         this.sectionCode = sectionCode;
-        this.gradingScheme = gradingScheme;
         this.nextIndex = 0;
         setFullQual(classFullQual + "." + sectionCode);
     }
@@ -27,7 +25,6 @@ public class Section extends Component {
             long studentID) {
         Student newStudent = new Student(firstName, lastName, studentID,
                 this, nextIndex++);
-        gradingScheme.addStudent();
         super.addChild(newStudent);
         return newStudent;
     }
@@ -38,8 +35,11 @@ public class Section extends Component {
     public char letterGrade(Student student) {
         return gradingScheme.letterGrade(student);
     }
-    public void setGradingScheme(GradingScheme gradingScheme) {
-        this.gradingScheme = gradingScheme;
+    public GradingScheme setGradingScheme(String impl, String[] categoryNames,
+            int...weights) {
+        gradingScheme = GradingSchemeFactory.makeGradingScheme(impl,
+                getFullQual(), categoryNames, weights);
+        return gradingScheme;
     }
 
     public String getSectionCode() {

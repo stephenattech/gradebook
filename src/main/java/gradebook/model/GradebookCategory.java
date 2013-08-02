@@ -100,11 +100,6 @@ public class GradebookCategory implements Storable {
     public String getName() {
         return categoryName;
     }
-    public void addStudent() {
-        for (GradebookItem item : items.values()) {
-            item.addStudent();
-        }
-    }
     public String getFullQual() {
         return fullQual;
     }

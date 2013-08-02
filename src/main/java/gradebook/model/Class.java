@@ -19,8 +19,8 @@ public class Class extends Component {
         setFullQual(courseFullQual + "." + year + "-" + term);
     }
 
-    public Section addSection(String sectionCode, GradingScheme scheme) {
-        Section newSection = new Section(sectionCode, scheme, getFullQual());
+    public Section addSection(String sectionCode) {
+        Section newSection = new Section(sectionCode, getFullQual());
         super.addChild(newSection);
         return newSection;
     }

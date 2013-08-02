@@ -8,13 +8,13 @@ import org.junit.Test;
 
 public class CourseTest {
 
-    Course cs1301;
-    
+    private Course cs1301;
+
     @Before
     public void setUp() throws Exception {
         cs1301 = new Course("CS", 1301, "Intro Computing", NONE);
     }
-    
+
     @Test
     public void testAddClass() {
         cs1301.addClass(2013, 1);

@@ -8,22 +8,22 @@ import org.junit.Test;
 
 public class DatabaseHashMapImplTest {
 
-    Course cs1301;
-    Section a4;
-    Student alice;
-    GradebookItem hwk1;
-    Database db;
+    private Course cs1301;
+    private Section a4;
+    private Student alice;
+    private GradebookItem hwk1;
+    private Database db;
+    private GradingScheme scheme;
 
     @Before
     public void setUp() throws Exception {
         String[] categoryNames = {"Homework", "Lab", "Test", "Quiz"};
         cs1301 = new Course("CS", 1301, "Intro Computing", NONE);
         Class fall2012 = cs1301.addClass(2013, 1);
-        a4 = fall2012.addSection("A4", null);
+        a4 = fall2012.addSection("A4");
         alice = new Student("Alice", "Bob", 97, a4, 0);
-        GradingScheme scheme = GradingSchemeFactory.makeGradingScheme("Full",
-                a4.getFullQual(), categoryNames, 3, 3, 4, 2);
-        a4.setGradingScheme(scheme);
+        int[] weights = {3, 3, 4, 2};
+        scheme = a4.setGradingScheme("Full", categoryNames, weights);
         GradebookCategory hwk = scheme.getCategory("Homework");
         hwk1 = hwk.addItem("HWK1", 40, 2);
         db = new DatabaseHashMapImpl();

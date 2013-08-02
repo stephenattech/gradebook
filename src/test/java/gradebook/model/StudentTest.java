@@ -6,15 +6,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class StudentTest {
-    
-    Section a4;
-    GradingScheme mockScheme;
-    Student amy, andrea;
-    
+
+    private Section a4;
+    private Student amy, andrea;
+
     @Before
     public void setUp() throws Exception {
-        mockScheme = GradingSchemeFactory.makeGradingScheme("MOCK",null,null);
-        a4 = new Section("A4", mockScheme, null);
+        a4 = new Section("A4", null);
+        a4.setGradingScheme("Mock", null);
         amy = a4.addStudent("Amy", "Dean", 855000000);
         andrea = a4.addStudent("Andrea", "Kelley", 994000000);
     }

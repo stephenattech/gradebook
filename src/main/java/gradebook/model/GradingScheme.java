@@ -9,7 +9,6 @@ package gradebook.model;
  */
 
 public interface GradingScheme extends Storable {
-    void addStudent();
     void setFullQual(String fullQual);
 
     double average(Student student);

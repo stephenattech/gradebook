@@ -37,13 +37,6 @@ public class GradingSchemeFullImpl implements GradingScheme {
     }
 
     @Override
-    public void addStudent() {
-        for (GradebookCategory category : categories.values()) {
-            category.addStudent();
-        }
-    }
-
-    @Override
     public double average(Student student) {
         double sum = 0;
         double weightSum = 0;

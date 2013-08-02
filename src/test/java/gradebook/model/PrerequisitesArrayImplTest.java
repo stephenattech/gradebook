@@ -9,10 +9,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class PrerequisitesArrayImplTest {
-    
-    Course cs1301, cs1331;
-    Prerequisites prereqs1331, prereqs2340;
-    
+
+    private Course cs1301, cs1331;
+    private Prerequisites prereqs1331, prereqs2340;
+
     @Before
     public void setUp() throws Exception {
         cs1301 = new Course("CS", 1301, "Intro Computing", NONE);
